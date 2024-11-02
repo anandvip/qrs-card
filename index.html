@@ -47,6 +47,11 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        .header img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+        }
+
         .header h1 {
             margin-bottom: 1rem;
             font-size: 2.5rem;
@@ -126,6 +131,7 @@
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1.5rem;
         }
 
         .theme-toggle:hover {
@@ -179,10 +185,14 @@
         <a href="#" onclick="changeLanguage('de')" id="langDe">Deutsch</a>
     </nav>
 
-    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    <button class="theme-toggle" onclick="toggleTheme()">🌚/🌜</button>
     
     <div id="mainContent" class="container">
-        <!-- Content will be populated by JavaScript -->
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/anandvip/qrs-resources/refs/heads/main/QRS-removebg-preview.png" alt="QRS Logo">
+            <h1>QRS Doctor Outreach Program</h1>
+            <p>A Strategic Approach to Building Medical Partnerships</p>
+        </div>
     </div>
 
     <script>
@@ -409,6 +419,7 @@
             const content = translations[lang];
             document.getElementById('mainContent').innerHTML = `
                 <div class="header">
+                    <img src="https://raw.githubusercontent.com/anandvip/qrs-resources/refs/heads/main/QRS-removebg-preview.png" alt="QRS Logo">
                     <h1>${content.title}</h1>
                     <p>${content.subtitle}</p>
                 </div>
@@ -432,4 +443,3 @@
     </script>
 </body>
 </html>
-
