@@ -1,100 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QRS Doctor Outreach Plan</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
-      color: #333;
-      margin: 0;
-      padding: 20px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    h1 {
-      color: #1a73e8;
-      text-align: center;
-    }
-    h2 {
-      color: #1a73e8;
-    }
-    p, li {
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-    .toggle-theme {
-      background-color: #1a73e8;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-bottom: 20px;
-      transition: background-color 0.3s;
-    }
-    .toggle-theme:hover {
-      background-color: #155bb5;
-    }
-    .dark-theme {
-      background-color: #1a1a1a;
-      color: #f4f6f8;
-    }
-    .dark-theme h1, .dark-theme h2 {
-      color: #7aaaff;
-    }
-    .dark-theme .toggle-theme {
-      background-color: #333;
-      color: #7aaaff;
-    }
-    .dark-theme .toggle-theme:hover {
-      background-color: #555;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRS Doctor Outreach Learning Portal</title>
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --accent: #fbbc04;
+            --danger: #ea4335;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #202124;
+            --text-secondary: #5f6368;
+            --border: #dadce0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            background: var(--background);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #4285f4 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section h2::before {
+            content: "→";
+            color: var(--accent);
+        }
+
+        .content {
+            padding-left: 1.5rem;
+        }
+
+        ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        li::before {
+            content: "•";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #e8f0fe;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: #1557b0;
+        }
+
+        /* Dark theme */
+        body.dark-theme {
+            --background: #202124;
+            --card-bg: #2d2d2d;
+            --text: #ffffff;
+            --text-secondary: #9aa0a6;
+            --border: #3c4043;
+        }
+
+        body.dark-theme .highlight {
+            background: #3c4043;
+        }
+
+        /* Language menu styles */
+        .language-nav {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .language-nav a {
+            text-decoration: none;
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .language-nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .language-nav a.active {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <button class="toggle-theme" onclick="toggleTheme()">Toggle Dark/Light Theme</button>
-    <h1>Doctor Outreach Plan for QRS Treatment Cards</h1>
-    <h2>1. Find the Right Doctors</h2>
-    <p>Focus on doctors who treat patients with pain, like back pain or joint pain. Start with general practitioners, orthopedic specialists, and wellness clinics.</p>
-    
-    <h2>2. Create a Small Info Pack</h2>
-    <ul>
-      <li><strong>QRS Brochure:</strong> Explain that QRS is a safe, non-invasive German technology for pain relief.</li>
-      <li><strong>Success Stories:</strong> Include stories of people who felt better using QRS.</li>
-      <li><strong>Offer a Free Session:</strong> Let doctors try QRS to understand how it works.</li>
-    </ul>
-    
-    <h2>3. Set Up Short Meetings</h2>
-    <p>Call or visit doctors to schedule a quick 15-minute chat. Explain that QRS could help many of their patients feel better.</p>
-    
-    <h2>4. Show and Tell</h2>
-    <p>Describe QRS simply: it’s a non-invasive therapy that helps reduce pain without surgery or medicine. Patients like it because it’s natural and painless.</p>
-    
-    <h2>5. Show How it Helps the Doctor</h2>
-    <ul>
-      <li><strong>Extra Earnings:</strong> Offer a referral incentive for every patient sent to QRS.</li>
-      <li><strong>Happy Patients:</strong> Satisfied patients build loyalty with the doctor’s clinic.</li>
-      <li><strong>Exclusive Status:</strong> Early doctors get recognized as QRS partners.</li>
-    </ul>
-    
-    <h2>6. Support the Doctors with Extra Materials</h2>
-    <p>Provide handouts for patients, keep in touch regularly, and help answer any questions.</p>
-    
-    <h2>7. Track and Adjust</h2>
-    <p>Check weekly progress, gather feedback, and make any necessary adjustments to improve doctor engagement and patient referrals.</p>
-  </div>
+    <nav class="language-nav">
+        <a href="#" onclick="changeLanguage('en')" id="langEn">English</a>
+        <a href="#" onclick="changeLanguage('hi')" id="langHi">हिंदी</a>
+        <a href="#" onclick="changeLanguage('de')" id="langDe">Deutsch</a>
+    </nav>
 
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('dark-theme');
-    }
-  </script>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    
+    <div id="mainContent" class="container">
+        <!-- Content will be populated by JavaScript -->
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "QRS Doctor Outreach Program",
+                subtitle: "A Strategic Approach to Building Medical Partnerships",
+                sections: [
+                    {
+                        heading: "Target Doctor Identification",
+                        content: `
+                            <p>Focus on specialists treating chronic pain conditions:</p>
+                            <ul>
+                                <li>General Practitioners</li>
+                                <li>Orthopedic Specialists</li>
+                                <li>Pain Management Experts</li>
+                                <li>Physical Therapists</li>
+                            </ul>
+                            <div class="highlight">
+                                Priority: Target doctors with high patient volume and interest in alternative therapies.
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "Professional Information Package",
+                        content: `
+                            <ul>
+                                <li>QRS Technology Overview - German engineering, safety certifications</li>
+                                <li>Clinical Evidence & Case Studies</li>
+                                <li>Patient Testimonials with Metrics</li>
+                                <li>Revenue Sharing Model</li>
+                            </ul>
+                            <div class="highlight">
+                                Emphasize: Non-invasive nature, zero side effects, complementary to existing treatments
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "Engagement Strategy",
+                        content: `
+                            <ul>
+                                <li>15-minute focused presentations</li>
+                                <li>Complimentary trial sessions</li>
+                                <li>Regular follow-up schedule</li>
+                                <li>Support materials for patient education</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        heading: "Value Proposition",
+                        content: `
+                            <ul>
+                                <li>Additional revenue stream through referral program</li>
+                                <li>Enhanced patient outcomes</li>
+                                <li>Differentiation in competitive market</li>
+                                <li>Early adopter benefits</li>
+                            </ul>
+                            <div class="highlight">
+                                Focus: Win-win partnership emphasizing patient care and practice growth
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "Performance Tracking",
+                        content: `
+                            <ul>
+                                <li>Weekly referral metrics</li>
+                                <li>Patient feedback collection</li>
+                                <li>Doctor satisfaction surveys</li>
+                                <li>Continuous program optimization</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            hi: {
+                title: "क्यूआरएस डॉक्टर आउटरीच प्रोग्राम",
+                subtitle: "चिकित्सा साझेदारी बनाने का रणनीतिक दृष्टिकोण",
+                sections: [
+                    {
+                        heading: "लक्षित डॉक्टर पहचान",
+                        content: `
+                            <p>पुरानी दर्द स्थितियों का उपचार करने वाले विशेषज्ञों पर ध्यान केंद्रित करें:</p>
+                            <ul>
+                                <li>सामान्य चिकित्सक</li>
+                                <li>आर्थोपेडिक विशेषज्ञ</li>
+                                <li>दर्द प्रबंधन विशेषज्ञ</li>
+                                <li>भौतिक चिकित्सक</li>
+                            </ul>
+                            <div class="highlight">
+                                प्राथमिकता: उच्च रोगी मात्रा और विकल्पीक उपचारों में रुचि वाले डॉक्टरों को लक्षित करें।
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "व्यावसायिक जानकारी पैकेज",
+                        content: `
+                            <ul>
+                                <li>क्यूआरएस प्रौद्योगिकी अवलोकन - जर्मन इंजिनियरिंग, सुरक्षा प्रमाणपत्र</li>
+                                <li>नैदानिक साक्ष्य और केस स्टडी</li>
+                                <li>रोगी प्रशंसापत्र के साथ मीट्रिक</li>
+                                <li>राजस्व साझेदारी मॉडल</li>
+                            </ul>
+                            <div class="highlight">
+                                जोर दें: गैर-आक्रामक प्रकृति, शून्य दुष्प्रभाव, मौजूदा उपचारों के पूरकक
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "जुड़ाव रणनीति",
+                        content: `
+                            <ul>
+                                <li>15 मिनट के केंद्रित प्रस्तुतिकरण</li>
+                                <li>मुफ्त परीक्षण सत्र</li>
+                                <li>नियमित फॉलो-अप शेड्यूल</li>
+                                <li>रोगी शिक्षा के लिए समर्थन सामग्री</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        heading: "मूल्य प्रस्ताव",
+                        content: `
+                            <ul>
+                                <li>रेफरल प्रोग्राम के माध्यम अतिरिक्त राजस्व धारा</li>
+                                <li>रोगी परिणामों में सुधार</li>
+                                <li>प्रतिस्पर्धा मार्केट में भेद</li>
+                                <li>प्रारंभिक अपनाय लाभ</li>
+                            </ul>
+                            <div class="highlight">
+                                ध्यान केंद्रित करें: रोगी देखभाल और प्रतिपा वृद्धि पर जोर देते हुए जीत-जीत साझेदारी
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "प्रदर्शन ट्रैकिंग",
+                        content: `
+                            <ul>
+                                <li>साप्ताहिक रेफरल मीट्रिक</li>
+                                <li>रोगी प्रतिक्रिया संग्रह</li>
+                                <li>डॉक्टर संतुष्टि सर्वेक्षण</li>
+                                <li>निरंतर प्रोग्राम अनुकूलन</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            de: {
+                title: "QRS Arzt-Outreach-Programm",
+                subtitle: "Ein strategischer Ansatz zum Aufbau medizinischer Partnerschaften",
+                sections: [
+                    {
+                        heading: "Zielärzte-Identifizierung",
+                        content: `
+                            <p>Fokus auf Spezialisten, die chronische Schmerzbedingungen behandeln:</p>
+                            <ul>
+                                <li>Allgemeinärzte</li>
+                                <li>Orthopädische Spezialisten</li>
+                                <li>Schmerztherapie-Experten</li>
+                                <li>Physiotherapeuten</li>
+                            </ul>
+                            <div class="highlight">
+                                Priorität: Zielärzte mit hohem Patientenaufkommen und Interesse an alternativen Therapien.
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "Professionelles Informationspaket",
+                        content: `
+                            <ul>
+                                <li>QRS Technologieübersicht - Deutsche Ingenieurskunst, Sicherheitszertifizierungen</li>
+                                <li>Klinische Beweise & Fallstudien</li>
+                                <li>Patientenberichte mit Metriken</li>
+                                <li>Umsatzbeteiligungsmodell</li>
+                            </ul>
+                            <div class="highlight">
+                                Betonen: Nicht-invasive Natur, keine Nebenwirkungen, ergänzend zu bestehenden Behandlungen
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "Engagement-Strategie",
+                        content: `
+                            <ul>
+                                <li>15-minütige fokussierte Präsentationen</li>
+                                <li>Kostenlose Probesitzungen</li>
+                                <li>Regelmäßiger Follow-up-Plan</li>
+                                <li>Unterstützungsmaterialien für die Patientenaufklärung</li>
+                            </ul>
+                        `
+                    },
+                    {
+                        heading: "Wertangebot",
+                        content: `
+                            <ul>
+                                <li>Zusätzlicher Umsatzstrom durch Empfehlungsprogramm</li>
+                                <li>Verbesserte Patientenergebnisse</li>
+                                <li>Abgrenzung im Wettbewerbsmarkt</li>
+                                <li>Vorteile für frühe Anwender</li>
+                            </ul>
+                            <div class="highlight">
+                                Fokus: Win-Win-Partnerschaft mit Schwerpunkt auf Patientenversorgung und Praxiswachstum
+                            </div>
+                        `
+                    },
+                    {
+                        heading: "Leistungsverfolgung",
+                        content: `
+                            <ul>
+                                <li>Wöchentliche Empfehlungsmetriken</li>
+                                <li>Patientenfeedback-Sammlung</li>
+                                <li>Arztzufriedenheitsbefragungen</li>
+                                <li>Kontinuierliche Programmoptimierung</li>
+                            </ul>
+                        `
+                    }
+                ]
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('.language-nav a').forEach(a => a.classList.remove('active'));
+            document.getElementById(`lang${lang.charAt(0).toUpperCase() + lang.slice(1)}`).classList.add('active');
+
+            const content = translations[lang];
+            document.getElementById('mainContent').innerHTML = `
+                <div class="header">
+                    <h1>${content.title}</h1>
+                    <p>${content.subtitle}</p>
+                </div>
+                ${content.sections.map(section => `
+                    <div class="section">
+                        <h2>${section.heading}</h2>
+                        <div class="content">
+                            ${section.content}
+                        </div>
+                    </div>
+                `).join('')}
+            `;
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        // Initialize with English
+        changeLanguage('en');
+    </script>
 </body>
 </html>
+
